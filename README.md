@@ -48,6 +48,3 @@ stock_prediction-main/
 
 ---
 
-## 📜 License
-
-MIT License © 2025 Swaraj Dudhmal
