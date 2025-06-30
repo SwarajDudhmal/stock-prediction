@@ -1,0 +1,146 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative; /* Allows positioning the background blur */
+}
+
+/* Background Image with Blur */
+body::before {
+  content: ''; /* Empty content to create an overlay */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../images/currency_img.png'); /* Set your background image here */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(1px); /* Apply blur effect */
+  z-index: -1; /* Places the background behind the content */
+}
+
+
+/* Container */
+.container {
+  position: relative; /* Enables absolute positioning for child elements */
+  background-color: white;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 1000px;
+  margin: 20px auto; /* Centers the container horizontally */
+}
+
+/* Back Button Styling */
+.back-button {
+  position: absolute; /* Positions the button relative to the container */
+  top: -200px; /* Adjusted the distance from the top of the container */
+  left: -400px; /* Adjusted the distance from the left side of the container */
+  background-color: transparent;
+  color: #effdff;
+  border: 2px solid #4CAF50; /* Green border around the back button */
+  padding: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 5px; /* Rounded corners for the border */
+  background-color: #4CAF50; /* Green background on hover */
+  border-color: #45a049;
+}
+
+.back-button:hover {
+  color: #fff;
+  background-color: #367cd1; /* Green background on hover */
+  border-color: #367cd1; /* Slightly darker border color on hover */
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 20px 50px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 20%;
+  
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+h2 {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+/* Navigation Bar */
+header {
+  background-color: #333;
+  color: white;
+  padding: 10px 0;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.logo img {
+  height: 60px;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav ul li {
+  margin-left: 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 5px 10px;
+}
+
+nav ul li a:hover {
+  background-color: #444;
+  border-radius: 5px;
+}

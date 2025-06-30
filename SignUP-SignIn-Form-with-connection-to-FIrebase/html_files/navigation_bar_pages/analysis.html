@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Analysis</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        /* Basic Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+
+        /* Header */
+        header {
+            background-color: #1e40af;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.2em;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #1e3a8a;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 8px 12px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        nav a:hover {
+            background-color: #374151;
+            border-radius: 6px;
+        }
+
+        /* Profile Info */
+        .profile-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profile-info img {
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            border: 2px solid #1e40af;
+        }
+
+        /* Main Section */
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 40px 20px;
+            padding-bottom: 80px;
+        }
+
+        /* Fixed Header Section */
+        .fixed-header {
+            position: sticky;
+            top: 0;
+            background-color: #0f172a;
+            padding: 20px 0;
+            z-index: 1000;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            color: #60a5fa;
+        }
+
+        /* Search Box */
+        .search-container {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            margin-bottom: 20px;
+            border: 1px solid #4b5563;
+            border-radius: 8px;
+            background-color: #1e293b;
+            color: #e2e8f0;
+            font-size: 1em;
+        }
+
+        input:focus {
+            outline: 2px solid #60a5fa;
+        }
+
+        /* Table */
+        table {
+            width: 60%;
+            border-collapse: collapse;
+            background-color: #1e293b;
+            color: #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        th,
+        td {
+            padding: 14px;
+            text-align: left;
+            border-bottom: 1px solid #374151;
+        }
+
+        th {
+            background-color: #2563eb;
+            color: white;
+        }
+
+        td a {
+            color: #60a5fa;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        td a:hover {
+            text-decoration: underline;
+        }
+
+        tr:hover {
+            background-color: #374151;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        /* Fixed Footer */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #1e40af;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Sign Out Button */
+        #signOutButton {
+            background-color: #ef4444;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        #signOutButton:hover {
+            background-color: #dc2626;
+        }
+    </style>
+
+    <!-- Firebase Authentication -->
+    <script type="module">
+        import { getAuth } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBKzklTetliRIv9UunBkZ-JfqV5mQnf3PU",
+            authDomain: "login-form-784b8.firebaseapp.com",
+            projectId: "login-form-784b8",
+            storageBucket: "login-form-784b8.firebasestorage.app",
+            messagingSenderId: "444698526985",
+            appId: "1:444698526985:web:c032a38d5cd43af9cbbfd8"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+
+        // Display user info in the navigation bar
+        function displayUserInfo(user) {
+            if (user) {
+                document.getElementById('profilePic').src = user.photoURL || '../user_icon.png';
+                document.getElementById('userEmailNav').textContent = user.email;
+            } else {
+                window.location.href = '../../index.html'; // Redirect if not logged in
+            }
+        }
+
+        // Check if user is signed in
+        auth.onAuthStateChanged(user => displayUserInfo(user));
+
+        // Sign out functionality
+        function signOut() {
+            if (confirm("Are you sure you want to sign out?")) {
+                auth.signOut().then(() => {
+                    window.location.href = '../../index.html';
+                }).catch(error => {
+                    console.error('Error signing out: ', error);
+                });
+            }
+        }
+
+        // Add sign out button event listener after page loads
+        window.onload = () => {
+            document.getElementById('signOutButton').addEventListener('click', signOut);
+        };
+    </script>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div>
+            <a href="../homepage1.html">Home</a>      
+            <a href="analysis.html">Analysis</a>
+            <a href="stock_prediction.html">Stock Prediction</a>
+            <a href="csv/nse.html">News</a>
+            <a href="profile.html">Profile</a>
+        </div>
+        <div class="profile-info">
+            <img id="profilePic" src="default-avatar.png" alt="Profile Picture">
+            <span id="userEmailNav"></span>
+            <a href="javascript:void(0)" id="signOutButton">Sign Out</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Fixed Header Section -->
+        <div class="fixed-header">
+            <h1>List of Companies</h1>
+
+            <!-- Fixed Search Bar -->
+            <div class="search-container">
+                <input type="text" id="search" onkeyup="searchTable()" placeholder="🔎 Search for companies...">
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Sr.No</th>
+                    <th>Company Name</th>
+                </tr>
+            </thead>
+            <tbody id="company-list">
+                <tr><td>1</td><td><a href="comapany_list/tata_moters.html">Tata Motors Ltd.</a></td></tr>
+                <tr><td>2</td><td><a href="comapany_list/nestle_india.html">Nestle India Ltd.</a></td></tr>
+                <tr><td>3</td><td><a href="comapany_list/tata_steel.html">Tata Steel Ltd.</a></td></tr>
+                <tr><td>4</td><td><a href="comapany_list/ultratech_cement.html">UltraTech Cement Ltd.</a></td></tr>
+                <tr><td>5</td><td><a href="comapany_list/relience.html">Reliance Industries Ltd.</a></td></tr>
+                <tr><td>6</td><td><a href="comapany_list/l&t.html">Larsen & Toubro Ltd.</a></td></tr>
+                <tr><td>7</td><td><a href="comapany_list/kotak_bank.html">Kotak Mahindra Bank Ltd.</a></td></tr>
+                <tr><td>8</td><td><a href="comapany_list/itc.html">ITC Ltd.</a></td></tr>
+                <tr><td>9</td><td><a href="comapany_list/infosys.html">Infosys Ltd.</a></td></tr>
+                <tr><td>10</td><td><a href="comapany_list/hdfc.html">HDFC Bank Ltd.</a></td></tr>
+                <tr><td>11</td><td><a href="comapany_list/airtel.html">Bharti Airtel Ltd.</a></td></tr>
+            </tbody>
+        </table>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Company Analysis. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Search functionality to filter company names in the table
+        function searchTable() {
+            let input = document.getElementById("search").value.toUpperCase();
+            let table = document.getElementById("company-list");
+            let rows = table.getElementsByTagName("tr");
+
+            for (let i = 0; i < rows.length; i++) {
+                let td = rows[i].getElementsByTagName("td")[1];
+                if (td) {
+                    let textValue = td.textContent || td.innerText;
+                    rows[i].style.display = textValue.toUpperCase().includes(input) ? "" : "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>

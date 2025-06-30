@@ -1,0 +1,147 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #5d7ac8, #00bcd4);
+    color: #ffffff;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Navbar */
+.navbar {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid rgba(184, 22, 22, 0.1);
+}
+
+.navbar h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+/* Button Styles */
+.btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.btn-back {
+    background-color: #f0f0f0;
+    color: #1e3a8a;
+}
+
+.btn-back:hover {
+    background-color: #00bcd4;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.theme-toggle {
+    background-color: #f0f0f0;
+    color: #1e3a8a;
+}
+
+.theme-toggle:hover {
+    background-color: #040808;
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+/* Main Content */
+.main-content {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Chart Container with Glassmorphism */
+#chart-container {
+    width: 95%;
+    max-width: 1400px;
+    height: 85vh;
+    margin: 20px auto;
+    background: rgba(30, 29, 29, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    color: #1a0c0c;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Light Theme */
+body.light-mode {
+    background: linear-gradient(to right, #a09d9d, #406d73);
+    color: #333;
+}
+
+body.light-mode .navbar,
+body.light-mode footer {
+    background: rgba(234, 191, 191, 0.9);
+    color: #1e3a8a;
+}
+
+body.light-mode #chart-container {
+    background: rgba(232, 202, 202, 0.8);
+    border: 1px solid rgba(189, 21, 21, 0.1);
+}
+
+body.light-mode .btn {
+    background-color: #1e3a8a;
+    color: #ffffff;
+}
+
+body.light-mode .btn:hover {
+    background-color: #00bcd4;
+    color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #chart-container {
+        height: 70vh;
+        padding: 10px;
+    }
+
+    .navbar h1 {
+        font-size: 1.4rem;
+        color: #000;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+}
+#forecast-chart-container {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 20px;
+    margin: 40px auto;
+    width: 95%;
+    max-width: 1400px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+  }

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NESTLE INDIA LTD. Stock Dashboard</title>
+    <link rel="stylesheet" href="css_file/style.css">
+</head>
+<body>
+    <button class="back-button" onclick="window.history.back();">← Back</button>
+    
+    <header>NESTLE INDIA LTD. Stock Dashboard</header>
+
+    <div class="container">
+        <div class="widget full-width">
+            <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-info.js" async>
+                {
+                    "symbol": "BSE:NESTLEIND",
+                    "width": "100%",
+                    "locale": "en",
+                    "colorTheme": "light",
+                    "isTransparent": false
+                }
+                </script>
+            </div>
+        </div>
+
+        <div class="widget full-width">
+            <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-profile.js" async>
+                {
+                    "width": "100%",
+                    "height": "100%",
+                    "isTransparent": false,
+                    "colorTheme": "light",
+                    "symbol": "BSE:NESTLEIND",
+                    "locale": "en"
+                }
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <div class="Swotcontainer">
+        <div class="Swotwidget">
+            <div class="swot-analysis">
+                <blockquote class="trendlyne-widgets" 
+                    data-get-url="https://trendlyne.com/web-widget/swot-widget/Poppins/NESTLEIND/?posCol=00A25B&primaryCol=006AFF&negCol=EB3B00&neuCol=F7941E" 
+                    data-theme="light"></blockquote>
+                <script async src="https://cdn-static.trendlyne.com/static/js/webwidgets/tl-widgets.js" charset="utf-8"></script>
+            </div>
+        </div>
+
+        <div class="Swotwidget">
+            <div class="technical-analysis">
+                <div class="tradingview-widget-container">
+                    <div class="tradingview-widget-container__widget"></div>
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
+                    {
+                        "interval": "1m",
+                        "width": "520",
+                        "isTransparent": false,
+                        "height": "400",
+                        "symbol": "BSE:NESTLEIND",
+                        "showIntervalTabs": true,
+                        "displayMode": "single",
+                        "locale": "en",
+                        "colorTheme": "light"
+                    }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>© 2025 Nestle India Stock Dashboard</footer>
+</body>
+</html>

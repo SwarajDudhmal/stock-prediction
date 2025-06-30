@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LARSEN & TOUBRO LTD.</title>
+    <link rel="stylesheet" href="css_file/style.css">
+</head>
+<body>
+    <button class="back-button" onclick="window.history.back();">← Back</button>
+    <header>
+        LARSEN & TOUBRO LTD. Stock Information
+    </header>
+    <div class="container">
+        <!-- Symbol Info Widget -->
+        <div class="widget full-width">
+            <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-info.js" async>
+                {
+                    "symbol": "BSE:LT",
+                    "width": "100%",
+                    "locale": "en",
+                    "colorTheme": "light",
+                    "isTransparent": false
+                }
+                </script>
+            </div>
+        </div>
+
+        <!-- Symbol Profile Widget -->
+        <div class="widget full-width symbol-profile-widget">
+            <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-profile.js" async>
+                {
+                    "width": "100%",
+                    "height": "100%",
+                    "isTransparent": false,
+                    "colorTheme": "light",
+                    "symbol": "BSE:LT",
+                    "locale": "en"
+                }
+                </script>
+            </div>
+        </div>
+
+        <div class="Swotcontainer">
+            <!-- SWOT Analysis Widget -->
+            <div class="Swotwidget full-width">
+                <div class="swot-analysis">
+                    <blockquote class="trendlyne-widgets" data-get-url="https://trendlyne.com/web-widget/swot-widget/Poppins/LT/?posCol=00A25B&primaryCol=006AFF&negCol=EB3B00&neuCol=F7941E" data-theme="light"></blockquote>
+                    <script async src="https://cdn-static.trendlyne.com/static/js/webwidgets/tl-widgets.js" charset="utf-8"></script>
+                </div>
+            </div>
+    
+            <!-- Technical Analysis Widget -->
+            <div class="Swotwidget full-width">
+                <div class="technical-analysis">
+                    <div class="tradingview-widget-container">
+                        <div class="tradingview-widget-container__widget"></div>
+                        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
+                        {
+                            "interval": "1m",
+                            "width": 425,
+                            "isTransparent": false,
+                            "height": 425,
+                            "symbol": "BSE:LT",
+                            "showIntervalTabs": true,
+                            "displayMode": "single",
+                            "locale": "en",
+                            "colorTheme": "light"
+                        }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <footer>
+        © 2025 Larsen & Toubro Stock Dashboard
+    </footer>
+</body>
+</html>

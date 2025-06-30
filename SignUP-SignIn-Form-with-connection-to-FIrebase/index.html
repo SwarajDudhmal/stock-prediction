@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register & Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="js_files/firebaseauth.js"></script>
+    <script type="module" src="js_files/googleauth.js"></script>
+</head>
+<body>
+    <button class="back-button"  onclick="window.location.href='../index.html';" style="color: beige;">← Back</button>
+    <div class="container" id="signup" style="display:none;">
+        <h1 class="form-title">Register</h1>
+        <form>
+            <div id="signUpMessage" class="messageDiv" style="display:none;"></div>
+            <div class="input-group">
+                <input type="text" id="fName" placeholder="First Name" required>
+                <label for="fName">First Name</label>
+            </div>
+            <div class="input-group">
+                <input type="text" id="lName" placeholder="Last Name" required>
+                <label for="lName">Last Name</label>
+            </div>
+            <div class="input-group">
+                <input type="email" id="rEmail" placeholder="Email" required>
+                <label for="rEmail">Email</label>
+            </div>
+            <div class="input-group">
+                <input type="password" id="rPassword" placeholder="Password" required>
+                <label for="rPassword">Password</label>
+            </div>
+            <button class="btn" id="submitSignUp">Sign Up</button>
+        </form>
+        
+        <div class="links">
+            <p>Already have an account?</p>
+            <button id="signInButton">Sign In</button>
+        </div>
+    </div>
+
+    <div class="container" id="signIn">
+        <h1 class="form-title">Sign In</h1>
+        <form>
+            <div id="signInMessage" class="messageDiv" style="display:none;"></div>
+            <div class="input-group">
+                <input type="email" id="email" placeholder="Email" required>
+                <label for="email">Email</label>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Password" required>
+                <label for="password">Password</label>
+            </div>
+            <p class="recover">
+                <a href="html_files/forgot-password.html">Forgot Password</a>
+            </p>
+            <button class="btn" id="submitSignIn">Sign In</button>
+        </form>
+        <p class="or">---------- or ----------</p>
+        <div class="icons">
+            <button id="googleSignIn">
+                <!-- Google Logo Image -->
+                <img src="images/search.png" alt="Google Logo" style="width: 20px; margin-right: 10px;">
+                Sign in with Google
+            </button>
+        </div>
+        
+        <div class="links">
+            <p>Don't have an account yet?</p>
+            <button id="signUpButton">Sign Up</button>
+        </div>
+    </div>
+    <script>
+        window.onload = function() {
+          const errorMessage = localStorage.getItem('verificationError');
+          if (errorMessage) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.innerText = errorMessage;
+            errorDiv.style.display = 'block';
+      
+            // Remove error after 5 seconds
+            setTimeout(() => {
+              errorDiv.style.opacity = '0';
+              setTimeout(() => {
+                errorDiv.style.display = 'none';
+                localStorage.removeItem('verificationError'); // Clear stored error message
+              }, 1000); // Give fade-out effect before hiding
+            }, 4000);
+          }
+        };
+      </script>
+      
+      <!-- Add this inside the body where you want to show the error -->
+      <div id="errorMessage" style="
+        display: none; 
+        color: red; 
+        font-weight: bold; 
+        padding: 10px; 
+        border: 1px solid red; 
+        background-color: #ffe6e6;
+        text-align: center;
+        margin: 10px auto;
+        width: 80%;
+        border-radius: 5px;
+        opacity: 1;
+        transition: opacity 1s ease-out;
+      "></div>
+      
+    <script src="js_files/script.js"></script>
+</body>
+</html>

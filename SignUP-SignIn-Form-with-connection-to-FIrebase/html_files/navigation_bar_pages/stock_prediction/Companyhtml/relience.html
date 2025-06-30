@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto-Loading Stock Prediction Visualizer</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="../stock_pages_ui.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <button class="btn btn-back" onclick="goBack()">⬅️ Back </button>
+        <h1>Reliance Stock Prediction Visualizer</h1>
+        <button class="btn theme-toggle" onclick="toggleTheme()">Switch Theme</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+        <!-- Chart Container -->
+        <div id="chart-container">
+            <div id="chart" style="width: 100%; height: 100%;"></div>
+        </div>
+
+        <!-- Forecast Chart Container -->
+        <div id="forecast-chart-container" style="margin-top: 20px;">
+            <div id="forecast-chart" style="width: 100%; height: 400px;"></div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 Reliance Stock Prediction Visualizer. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+        }
+
+        // Go Back to Previous Page
+        function goBack() {
+            window.history.back(); // Redirect to the previous page
+        }
+
+        // CSV Path
+        const CSV_PATH = 'maingraphcsv/Reli.csv'; // Path to the CSV file
+        const FORECAST_CSV_PATH = '7dayforecast/Reliforecast.csv'; // Path to the forecast CSV file
+
+        // Load and process CSV data
+        window.addEventListener('DOMContentLoaded', async () => {
+            try {
+                // Load main data
+                const response = await fetch(CSV_PATH);
+                if (!response.ok) throw new Error('CSV file not found');
+                const csvData = await response.text();
+                processDataAndRender(csvData);
+                
+                // Load forecast data
+                const forecastResponse = await fetch(FORECAST_CSV_PATH);
+                if (!forecastResponse.ok) throw new Error('Forecast CSV file not found');
+                const forecastData = await forecastResponse.text();
+                processForecastData(forecastData);
+            } catch (error) {
+                console.error('Error:', error);
+                alert(`Failed to load data: ${error.message}`);
+            }
+        });
+
+        // Process CSV and prepare data for chart
+        function processDataAndRender(csvText) {
+            const lines = csvText.split('\n').filter(line => line.trim() !== '');
+            const headers = lines.shift().split(',');
+
+            const traces = {
+                actualTrain: { x: [], y: [], name: 'Actual (Train)', mode: 'lines+markers', line: { color: '#1f77b4' } },
+                predictedTrain: { x: [], y: [], name: 'Predicted (Train)', mode: 'lines', line: { color: '#ff7f0e' } },
+                actualTest: { x: [], y: [], name: 'Actual (Test)', mode: 'lines+markers', line: { color: '#2ca02c' } },
+                predictedTest: { x: [], y: [], name: 'Predicted (Test)', mode: 'lines', line: { color: '#d62728' } }
+            };
+
+            lines.forEach(line => {
+                const [date, actual, predicted, type] = line.split(',');
+                const numActual = parseFloat(actual);
+                const numPredicted = parseFloat(predicted);
+
+                const collection = type === 'Train' ? 'Train' : 'Test';
+                traces[`actual${collection}`].x.push(date);
+                traces[`actual${collection}`].y.push(numActual);
+                traces[`predicted${collection}`].x.push(date);
+                traces[`predicted${collection}`].y.push(numPredicted);
+            });
+
+            renderChart(Object.values(traces));
+        }
+        
+        // Process forecast CSV and prepare data for chart
+        function processForecastData(csvText) {
+            const lines = csvText.split('\n').filter(line => line.trim() !== '');
+            const headers = lines.shift().split(',');
+            
+            const dates = [];
+            const forecastValues = [];
+            
+            lines.forEach(line => {
+                if (line.trim() === '') return;
+                const [date, forecast] = line.split(',');
+                dates.push(date);
+                forecastValues.push(parseFloat(forecast));
+            });
+            
+            const forecastTrace = {
+                x: dates,
+                y: forecastValues,
+                name: 'Future Forecast',
+                mode: 'lines+markers',
+                line: { color: '#9467bd', width: 3 },
+                marker: { size: 8, symbol: 'diamond' }
+            };
+            
+            renderForecastChart([forecastTrace]);
+        }
+
+        // Render Chart with High Graphics
+        function renderChart(data) {
+            const layout = {
+                title: {
+                    text: 'Reliance Stock Price Prediction Analysis 📈',
+                    font: { size: 24, color: '#ffffff' }
+                },
+                xaxis: {
+                    title: '<b>Date</b>',
+                    titlefont: { size: 16, color: '#000' },
+                    tickfont: { size: 12, color: '#000' },
+                    type: 'date',
+                    rangeslider: { visible: true },
+                },
+                yaxis: {
+                    title: '<b>Price</b>',
+                    titlefont: { size: 16, color: '#000' },
+                    tickfont: { size: 12, color: '#000' },
+                    gridcolor: '#e0e0e0'
+                },
+                plot_bgcolor: 'rgba(0,0,0,0.1)',
+                paper_bgcolor: 'rgba(255,255,255,0)',
+                showlegend: true,
+                legend: { orientation: 'h', y: -0.2 },
+                hovermode: 'x unified',
+                dragmode: 'pan',
+                margin: { t: 50, b: 60, l: 50, r: 50 },
+                transition: {
+                    duration: 500,
+                    easing: 'cubic-in-out'
+                }
+            };
+
+            Plotly.newPlot('chart', data, layout, { responsive: true });
+        }
+        
+        // Render Forecast Chart with matching style
+        function renderForecastChart(data) {
+            const layout = {
+                title: {
+                    text: 'Reliance Stock Price Future Forecast (April 22-30, 2025) 🔮',
+                    font: { size: 24, color: '#ffffff' }
+                },
+                xaxis: {
+                    title: '<b>Date</b>',
+                    titlefont: { size: 16, color: '#000' },
+                    tickfont: { size: 12, color: '#000' },
+                    type: 'date'
+                },
+                yaxis: {
+                    title: '<b>Forecasted Price</b>',
+                    titlefont: { size: 16, color: '#000' },
+                    tickfont: { size: 12, color: '#000' },
+                    gridcolor: '#e0e0e0'
+                },
+                plot_bgcolor: 'rgba(0,0,0,0.1)',
+                paper_bgcolor: 'rgba(255,255,255,0)',
+                showlegend: true,
+                legend: { orientation: 'h', y: -0.2 },
+                hovermode: 'closest',
+                dragmode: 'pan',
+                margin: { t: 50, b: 60, l: 50, r: 50 },
+                transition: {
+                    duration: 500,
+                    easing: 'cubic-in-out'
+                }
+            };
+
+            Plotly.newPlot('forecast-chart', data, layout, { responsive: true });
+        }
+    </script>
+</body>
+

@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fafb;
+  color: #333;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* Allow page scrolling */
+}
+
+header {
+  background: linear-gradient(90deg, #534caf, #2d6dae);
+  color: rgb(255, 255, 255);
+  text-align: center;
+  padding: 20px;
+  font-size: 2rem;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid #ddd;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.widget {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 100%;
+}
+
+.symbol-profile-widget, .tradingview-widget-container {
+  height: 400px;
+  width: 100%;
+}
+
+.Swotcontainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.Swotwidget {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.swot-analysis, .technical-analysis {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-size: 1rem;
+  margin-top: auto;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .Swotcontainer {
+      grid-template-columns: 1fr;
+  }
+
+  header {
+      font-size: 1.5rem;
+      padding: 15px;
+  }
+
+  footer {
+      font-size: 0.9rem;
+  }
+
+  .symbol-profile-widget, .tradingview-widget-container {
+      height: 300px;
+  }
+}
+  /* Back Button */
+  .back-button {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #051eab;
+    color: rgb(246, 246, 246);
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.back-button:hover {
+    background: #5aa1ed;
+    color: #fff;
+}
