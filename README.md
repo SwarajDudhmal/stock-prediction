@@ -1,61 +1,53 @@
-# stock-prediction
-A Stock Price Prediction System using LSTM
-A machine learning-based project for predicting stock prices using various algorithms like Linear Regression, LSTM, and more.
+# 📈 Web-based Stock Price Prediction System
+
+A responsive web application that predicts stock prices and provides user authentication via Firebase.
 
 ---
 
-## 📁 Project Structure
+## 🌐 Features
+
+- Responsive homepage with stock and currency prediction sections
+- Currency converter UI
+- User Signup/Login system with Firebase
+- Interactive front-end with HTML, CSS, JavaScript
+
+---
+
+## 📁 Folder Structure
 
 ```
-├── dataset/                # Contains stock data CSV files
-├── models/                 # Trained models (if saved)
-├── stock_predictor.py      # Main Python script
-├── requirements.txt        # Python dependencies
-└── README.md               # Project overview
-```
-
----
-
-## 🚀 Features
-
-- Cleans and processes stock data
-- Trains models for price prediction
-- Shows prediction graphs and evaluation metrics
-- Modular and easy to extend
-
----
-
-## 🛠️ Installation
-
-Make sure Python is installed. Then:
-
-```bash
-pip install -r requirements.txt
+stock_prediction-main/
+├── index.html                          # Main landing page
+├── Home_page_items/
+│   ├── css/                            # Styling for pages
+│   ├── html/                           # Currency page HTML
+│   ├── js/                             # JavaScript for UI
+│   └── images/                         # Icons and illustrations
+├── SignUP-SignIn-Form-with-connection-to-FIrebase/
+│   └── index.html                      # Firebase-auth Signup/Login form
+└── README.md
 ```
 
 ---
 
-## ▶️ How to Run
+## 🧪 How to Use
 
-```bash
-python stock_predictor.py
-```
+1. Clone or download the repo
+2. Open `index.html` in a browser
+3. Navigate the UI and test login via the Firebase form
 
-Make sure the dataset is available in the `dataset/` folder.
-
----
-
-## 📊 Output
-
-- Plots of actual vs predicted stock prices
-- Accuracy metrics (MAE, MSE, RMSE)
+> Make sure to add your Firebase project credentials to the signup form’s JavaScript (not shown here).
 
 ---
 
-## 🧠 Models Used
+## 🛠 Tech Stack
 
-- Linear Regression
-- SVR
-- LSTM – if included in your code
+- HTML5, CSS3, JavaScript
+- Firebase Authentication
+- Responsive Web UI
 
 ---
+
+## 📜 License
+
+MIT License © 2025 Swaraj Dudhmal
