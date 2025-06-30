@@ -1,6 +1,6 @@
 const firebaseConfig = {
   //   copy your firebase config informations
-  apiKey: "AIzaSyDuCaYTMHm7xFcOp163p9oXjNeYjs8wE5M",
+  apiKey: "-----Your Key------",
   authDomain: "demo1-746fb.firebaseapp.com",
   databaseURL: "https://demo1-746fb-default-rtdb.firebaseio.com",
   projectId: "demo1-746fb",
